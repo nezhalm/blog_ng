@@ -1,10 +1,10 @@
 import {Component, Input} from '@angular/core';
 import { Observable } from "rxjs";
 import { select, Store } from "@ngrx/store";
-import * as CommentActions from "../../../../store/actions/comment.actions";
-import { CommentResponse } from "../../../../models/comment/comment-response.model";
-import { AppStore } from "../../../../store/reducers";
-import { selectComments } from "../../../../store/selectors/comment.selectors";
+import * as CommentActions from "../../../store/actions/comment.actions";
+import { CommentResponse } from "../../../models/comment/comment-response.model";
+import { AppStore } from "../../../store/reducers";
+import { selectComments } from "../../../store/selectors/comment.selectors";
 
 @Component({
   selector: 'app-comments',

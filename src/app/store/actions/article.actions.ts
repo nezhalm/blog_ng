@@ -17,3 +17,9 @@ export const updateArticleFailure = createAction('[Article] Update Article Failu
 export const deleteArticle = createAction('[Article] Delete Article', props<{ id: string }>());
 export const deleteArticleSuccess = createAction('[Article] Delete Article Success', props<{ id: string }>());
 export const deleteArticleFailure = createAction('[Article] Delete Article Failure');
+
+
+
+export const loadArticle = createAction('[Article] Load Article', props<{ articleId: string }>());
+export const loadArticleSuccess = createAction('[Article] Load Article Success', props<{ article: Article }>());
+export const loadArticleFailure = createAction('[Article] Load Article Failure', props<{ error: any }>());

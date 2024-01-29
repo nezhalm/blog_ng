@@ -6,11 +6,13 @@ export interface ArticleResponse {
 
     id: string;
     title: string;
-    content: string;
+    text: string;
     createdAt: Date;
     tags: string[];
-    author: Author;
+    user: Author;
     comments: CommentResponse[];
     medias: Media[];
+    postingTime: Date ;
+
 
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import { Observable, catchError } from 'rxjs';
+import {Observable, catchError, throwError} from 'rxjs';
 import { Article } from "../../models/article/article.model";
 import { ArticleResponse } from "../../models/article/article-response.model";
 import {Page} from "../../models/pageable/page.model";
@@ -13,7 +13,7 @@ export class ArticleService {
 
   constructor(private http: HttpClient) {}
 
-  api: string = "http://localhost:8080/api/articles";
+  api: string = "http://localhost:8080/articles";
 
   public create(article: Article): Observable<ArticleResponse> {
     return this.http.post<ArticleResponse>(this.api, article)
@@ -45,7 +45,7 @@ export class ArticleService {
         );
   }
 
-  public getOne(id: string): Observable<ArticleResponse> {
+  public getArticleById(id: string): Observable<ArticleResponse> {
     return this.http.get<ArticleResponse>(`${this.api}/${id}`)
         .pipe(
             catchError((error: any) => {
@@ -58,13 +58,14 @@ export class ArticleService {
 
   public getAll(page: number, size: number): Observable<any> {
     const params: HttpParams = new HttpParams().set('page', page.toString()).set('size', size.toString());
+
     return this.http.get<any>(this.api, { params })
-        .pipe(
-            catchError((error: any) => {
-              console.log(error.error.message);
-              throw error;
-            })
-        );
+      .pipe(
+        catchError((error: any) => {
+          console.error('Une erreur s\'est produite:', error);
+          return throwError(error); // Il est important de renvoyer une observable de l'erreur
+        })
+      );
   }
 
   public searchByTitle(page: number, size: number, title: string): Observable<Page> {

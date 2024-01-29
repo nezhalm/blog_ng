@@ -1,12 +1,14 @@
 import { Media } from "../media.model";
+import {Author} from "../user/author.model";
 
 export interface Article {
 
     id?: string;
     title: string;
-    content: string;
+    text: string;
     tags: string[];
-    author: string;
+    user: Author;
     medias: Media[];
+    postingTime: Date ;
 
 }
